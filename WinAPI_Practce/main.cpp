@@ -3,14 +3,14 @@
 
 #include "framework.h"
 #include "WinAPI_Practce.h"
-#include "Commoninclude.h"
+
 
 #include "..\\STBEngine_Source\STBApplication.h"
 
 // 코드로 연결시키는 것
 //#pragma comment (lib, "..\\x64\\Debug\\STBEngine_Window.lib")
 
-Application app;
+STB::Application application;
 
 #define MAX_LOADSTRING 100
 
@@ -44,8 +44,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 프로그램 인스턴스 핸
     // TODO: 여기에 코드를 입력합니다.
 
        // 테스트
-    app.test();
-
+   
 
 
     // 전역 문자열을 초기화합니다.
@@ -85,11 +84,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 프로그램 인스턴스 핸
                 TranslateMessage(&msg);
                 DispatchMessage(&msg);
              }
-            else
-            {
-                // 메세지가 없을 경우 여기서 처리
-                // 게임 로직이 들어가면 된다.
-            }
+           
+        }
+        else
+        {
+            // 메세지가 없을 경우 여기서 처리
+            // 게임 로직이 들어가면 된다.
+            application.Run();
+
         }
     }
 
@@ -154,6 +156,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    //ㄴ 창에 접근할 수 있는 Handle을 반환한다. 메모리에 만든다.
    // 잘못입력하면 NULL을 반환한다.
 
+   application.initialize(hWnd);
+
    if (!hWnd)
    {
       return FALSE;
@@ -198,44 +202,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
    
     case WM_PAINT:
-        {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
-
-            // 색 브러쉬를 만들고 SelectObject를 통해서 사용할 브러쉬를 선택한다.
-            // 파랑 브러쉬 생성
-            HBRUSH brush = CreateSolidBrush(RGB(0, 0, 255));
-
-            HBRUSH hath = CreateHatchBrush(HS_DIAGCROSS, RGB(0, 0, 255));
-            // 파랑 브러쉬 DC에 선택 그리고 흰색 브러쉬 반환값 반환
-            HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush);
-            SelectObject(hdc, hath);
-
-            Rectangle(hdc, 100, 100, 200, 200);
-
-            // 다시 흰색 원본브러쉬로 선택
-            SelectObject(hdc, oldBrush); //GDI Object를 상속받고 있다.
-            DeleteObject(brush);
-
-            HPEN redPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
-           
-            HPEN oldPen = (HPEN)SelectObject(hdc, redPen);
-
-            Ellipse(hdc, 200, 200, 300, 300);
-
-            SelectObject(hdc, oldPen);
-            DeleteObject(redPen);
-            // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
-
-            // 기본으로 자주사용 되는 GDI 오브젝트를 미리 DC안에 만들어두었는데
-            // 그 오브젝트들을 스톡 오브젝트라고 한다.
-
-            HBRUSH graybrush = (HBRUSH)GetStockObject(GRAY_BRUSH);
-            oldBrush = (HBRUSH)SelectObject(hdc, graybrush);
-            Rectangle(hdc, 400, 400, 500, 500);
-            
-            EndPaint(hWnd, &ps);
-        }
+    {
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hWnd, &ps);
+        
+        EndPaint(hWnd, &ps);
+    }
         break;
     case WM_DESTROY:
         PostQuitMessage(0);
