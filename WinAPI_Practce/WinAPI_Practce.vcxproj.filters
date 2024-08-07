@@ -11,6 +11,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="WinAPI_Practce.h" />
+    <ClInclude Include="Commoninclude.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI_Practce.rc">
@@ -27,5 +28,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Commoninclude.cpp" />
   </ItemGroup>
 </Project>

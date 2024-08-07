@@ -3,6 +3,7 @@
 
 #include "framework.h"
 #include "WinAPI_Practce.h"
+#include "Commoninclude.h"
 
 #define MAX_LOADSTRING 100
 
@@ -11,16 +12,24 @@ HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 
+/*
+기본적인 CHAR는 1바이트 
+WCHAR : 2바이트 char 변수
+
+
+*/
+
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
-                     _In_opt_ HINSTANCE hPrevInstance,
-                     _In_ LPWSTR    lpCmdLine,
-                     _In_ int       nCmdShow)
+int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 프로그램 인스턴스 핸들
+                     _In_opt_ HINSTANCE hPrevInstance, // 바로앞에 실행된 현재 프로그램의 인스턴스 핸들, 없을경우에는 NULL 
+                                                       // ㄴ 예전에는 사용했지만 호환성의 문제로 지금은 사용하지 않는다 따라서 신경쓰지 않아도 된다.
+                     _In_ LPWSTR    lpCmdLine,         // 명령행으로 입력된 프로그램 인수라고 하는데 
+                     _In_ int       nCmdShow)// 프로그램이 실행될 형태이며, 보통 모양정보등이 전달된다.
 {
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
@@ -30,7 +39,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_WINAPIPRACTCE, szWindowClass, MAX_LOADSTRING);
-    MyRegisterClass(hInstance);
+    MyRegisterClass(hInstance); //-> 윈도우의 정보들을 세팅해준다.
 
     // 애플리케이션 초기화를 수행합니다:
     if (!InitInstance (hInstance, nCmdShow))
@@ -42,16 +51,46 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
 
-    // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+    //GetMessage(&msg, nullptr, 0,0)
+    // 프로세스에서 발생한 메세지를 메세지 큐에서 가져오는 함수
+    // 메세지 큐에 아무것도 없다면?? 아무 메세지도 가져오지 못한다.
+
+    //PeekMessage : 메세지큐에 메세지 유무에 상관없이 함수가 리턴된다.
+    //              리턴 값이 true인 경우 메세지가 있고 false인경우는 메세지가 없다라고 가르켜준다.
+
+    while (true)
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            if (msg.message == WM_QUIT)
+            {
+                break;
+            }
+
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+            {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+             }
+            else
+            {
+                // 메세지가 없을 경우 여기서 처리
+                // 게임 로직이 들어가면 된다.
+            }
         }
     }
 
+
+   // // 기본 메시지 루프입니다:
+   // while (GetMessage(&msg, nullptr, 0, 0))
+   // {
+   //     if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+   //     {
+   //         TranslateMessage(&msg);
+   //         DispatchMessage(&msg);
+   //     }
+   // }
+   //
     return (int) msg.wParam;
 }
 
@@ -69,7 +108,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.cbSize = sizeof(WNDCLASSEX);
 
     wcex.style          = CS_HREDRAW | CS_VREDRAW;
-    wcex.lpfnWndProc    = WndProc;
+    wcex.lpfnWndProc    = WndProc; // lpfnWndProc = 함수포인터
     wcex.cbClsExtra     = 0;
     wcex.cbWndExtra     = 0;
     wcex.hInstance      = hInstance;
@@ -77,10 +116,10 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
     wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_WINAPIPRACTCE);
-    wcex.lpszClassName  = szWindowClass;
+    wcex.lpszClassName  = szWindowClass; 
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
-    return RegisterClassExW(&wcex);
+    return RegisterClassExW(&wcex); // RegisterClassExW함수를 통해서 메모리에 등록한다.
 }
 
 //
@@ -98,14 +137,16 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+      CW_USEDEFAULT, 0, 1600, 900, nullptr, nullptr, hInstance, nullptr);
+   //ㄴ 창에 접근할 수 있는 Handle을 반환한다. 메모리에 만든다.
+   // 잘못입력하면 NULL을 반환한다.
 
    if (!hWnd)
    {
       return FALSE;
    }
 
-   ShowWindow(hWnd, nCmdShow);
+   ShowWindow(hWnd, nCmdShow); // 윈도우에 호출한다.
    UpdateWindow(hWnd);
 
    return TRUE;
@@ -142,11 +183,44 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
+   
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
+
+            // 색 브러쉬를 만들고 SelectObject를 통해서 사용할 브러쉬를 선택한다.
+            // 파랑 브러쉬 생성
+            HBRUSH brush = CreateSolidBrush(RGB(0, 0, 255));
+
+            HBRUSH hath = CreateHatchBrush(HS_DIAGCROSS, RGB(0, 0, 255));
+            // 파랑 브러쉬 DC에 선택 그리고 흰색 브러쉬 반환값 반환
+            HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush);
+            SelectObject(hdc, hath);
+
+            Rectangle(hdc, 100, 100, 200, 200);
+
+            // 다시 흰색 원본브러쉬로 선택
+            SelectObject(hdc, oldBrush); //GDI Object를 상속받고 있다.
+            DeleteObject(brush);
+
+            HPEN redPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
+           
+            HPEN oldPen = (HPEN)SelectObject(hdc, redPen);
+
+            Ellipse(hdc, 200, 200, 300, 300);
+
+            SelectObject(hdc, oldPen);
+            DeleteObject(redPen);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+
+            // 기본으로 자주사용 되는 GDI 오브젝트를 미리 DC안에 만들어두었는데
+            // 그 오브젝트들을 스톡 오브젝트라고 한다.
+
+            HBRUSH graybrush = (HBRUSH)GetStockObject(GRAY_BRUSH);
+            oldBrush = (HBRUSH)SelectObject(hdc, graybrush);
+            Rectangle(hdc, 400, 400, 500, 500);
+            
             EndPaint(hWnd, &ps);
         }
         break;
