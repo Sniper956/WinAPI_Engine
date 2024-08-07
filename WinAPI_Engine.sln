@@ -5,7 +5,15 @@ VisualStudioVersion = 16.0.35026.282
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinAPI_Practce", "WinAPI_Practce\WinAPI_Practce.vcxproj", "{C8F22C84-A95E-427B-B4EE-5367BE0A88ED}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "STBEngine_Window", "STBEngine_Window\STBEngine_Window.vcxproj", "{DE2EE9B6-01C5-4C7D-8052-66BF1BB9D4CA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "STBEngine_Source", "STBEngine_Source\STBEngine_Source.vcxitems", "{F48A9F43-9800-4D7A-BF15-E36149D48928}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		STBEngine_Source\STBEngine_Source.vcxitems*{de2ee9b6-01c5-4c7d-8052-66bf1bb9d4ca}*SharedItemsImports = 4
+		STBEngine_Source\STBEngine_Source.vcxitems*{f48a9f43-9800-4d7a-bf15-e36149d48928}*SharedItemsImports = 9
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
@@ -21,6 +29,14 @@ Global
 		{C8F22C84-A95E-427B-B4EE-5367BE0A88ED}.Release|x64.Build.0 = Release|x64
 		{C8F22C84-A95E-427B-B4EE-5367BE0A88ED}.Release|x86.ActiveCfg = Release|Win32
 		{C8F22C84-A95E-427B-B4EE-5367BE0A88ED}.Release|x86.Build.0 = Release|Win32
+		{DE2EE9B6-01C5-4C7D-8052-66BF1BB9D4CA}.Debug|x64.ActiveCfg = Debug|x64
+		{DE2EE9B6-01C5-4C7D-8052-66BF1BB9D4CA}.Debug|x64.Build.0 = Debug|x64
+		{DE2EE9B6-01C5-4C7D-8052-66BF1BB9D4CA}.Debug|x86.ActiveCfg = Debug|Win32
+		{DE2EE9B6-01C5-4C7D-8052-66BF1BB9D4CA}.Debug|x86.Build.0 = Debug|Win32
+		{DE2EE9B6-01C5-4C7D-8052-66BF1BB9D4CA}.Release|x64.ActiveCfg = Release|x64
+		{DE2EE9B6-01C5-4C7D-8052-66BF1BB9D4CA}.Release|x64.Build.0 = Release|x64
+		{DE2EE9B6-01C5-4C7D-8052-66BF1BB9D4CA}.Release|x86.ActiveCfg = Release|Win32
+		{DE2EE9B6-01C5-4C7D-8052-66BF1BB9D4CA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,6 +5,13 @@
 #include "WinAPI_Practce.h"
 #include "Commoninclude.h"
 
+#include "..\\STBEngine_Source\STBApplication.h"
+
+// 코드로 연결시키는 것
+//#pragma comment (lib, "..\\x64\\Debug\\STBEngine_Window.lib")
+
+Application app;
+
 #define MAX_LOADSTRING 100
 
 // 전역 변수:
@@ -36,11 +43,17 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, // 프로그램 인스턴스 핸
 
     // TODO: 여기에 코드를 입력합니다.
 
+       // 테스트
+    app.test();
+
+
+
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_WINAPIPRACTCE, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance); //-> 윈도우의 정보들을 세팅해준다.
 
+ 
     // 애플리케이션 초기화를 수행합니다:
     if (!InitInstance (hInstance, nCmdShow))
     {
