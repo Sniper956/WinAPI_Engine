@@ -1,6 +1,7 @@
 #pragma once
 #include "Commonincllude.h"
 #include "GameObject.h"
+#include "GameObjectRed.h"
 
 
 namespace STB
@@ -29,6 +30,7 @@ namespace STB
 		//float mX;
 		//float mY;
 		GameObject mPlayer;
+		GameObjectRed mPlayer2;
 	};
 
 

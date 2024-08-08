@@ -20,7 +20,7 @@ namespace STB
 	{
 		mhwnd = hwnd;
 		mhdc = GetDC(hwnd);
-        mPlayer.SetPostion(0, 0);
+       // mPlayer.SetPostion(0, 0);
 	}
 	void Application::Run()
 	{
@@ -31,6 +31,7 @@ namespace STB
 	void Application::Update()
 	{
         mPlayer.Update();
+		mPlayer2.Update();
 	}
 	void Application::LateUpdate()
 	{
@@ -38,6 +39,7 @@ namespace STB
 	}
 	void Application::Render()
 	{
-        mPlayer.Render(mhdc);   
+        mPlayer.Render(mhdc);  
+		mPlayer2.Render(mhdc);
 	}
 }

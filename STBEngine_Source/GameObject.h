@@ -13,13 +13,13 @@ namespace STB
 		void Update();
 		void LateUpdate();
 		void Render(HDC hdc);
-
-		void SetPostion(float x, float y)
-		{
-			mX = x;
-			mY = y;
-		}
-
+	   
+		//void SetPostion(float x, float y)
+		//{
+		//	mX = x;
+		//	mY = y;
+		//}
+	   
 		float GetPostionX() { return mX; }
 		
 		float GetPostionY() { return mY; }
