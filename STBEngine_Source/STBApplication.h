@@ -1,6 +1,6 @@
 #pragma once
 #include "Commonincllude.h"
-
+#include "GameObject.h"
 
 
 namespace STB
@@ -22,9 +22,13 @@ namespace STB
 	private:
 		HWND mhwnd;
 		HDC mhdc;
+
 		float mSpeed;
-		float mX;
-		float mY;
+
+		// 플레이어
+		//float mX;
+		//float mY;
+		GameObject mPlayer;
 	};
 
 
