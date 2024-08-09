@@ -1,4 +1,5 @@
 #include "STBApplication.h"
+#include "STBInput.h"
 
 namespace STB
 {
@@ -21,6 +22,8 @@ namespace STB
 		mhwnd = hwnd;
 		mhdc = GetDC(hwnd);
        // mPlayer.SetPostion(0, 0);
+
+		Input::Initialize();
 	}
 	void Application::Run()
 	{
@@ -30,6 +33,8 @@ namespace STB
 	}
 	void Application::Update()
 	{
+		Input::Update();
+
         mPlayer.Update();
 		mPlayer2.Update();
 	}
