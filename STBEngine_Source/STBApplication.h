@@ -1,7 +1,7 @@
 #pragma once
 #include "Commonincllude.h"
 #include "GameObject.h"
-#include "GameObjectRed.h"
+#include "STBTime.h"
 
 
 namespace STB
@@ -11,7 +11,7 @@ namespace STB
 	public:
 		Application();
 		~Application();
-		void initialize(HWND hwnd);
+		void initialize(HWND hwnd, UINT width, UINT height);
 		void Run();
 
 
@@ -24,13 +24,17 @@ namespace STB
 		HWND mhwnd;
 		HDC mhdc;
 
-		float mSpeed;
+		// 원본그대로의 그림판
+		HDC mBackHdc;
+		HBITMAP mBackBuffer;
 
-		// 플레이어
-		//float mX;
-		//float mY;
+
+		UINT mWidth;
+		UINT mHeight;
+
+	
 		GameObject mPlayer;
-		GameObjectRed mPlayer2;
+
 	};
 
 

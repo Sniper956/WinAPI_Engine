@@ -19,6 +19,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GameObjectRed.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)STBApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)STBInput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)STBTime.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Application.cpp" />
@@ -26,5 +27,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GameObjectRed.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Input.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)STBInput.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)STBTime.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Time.cpp" />
   </ItemGroup>
 </Project>

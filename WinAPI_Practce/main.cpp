@@ -151,12 +151,14 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
+   const UINT width = 1600;
+   const UINT height = 900;
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, 1600, 900, nullptr, nullptr, hInstance, nullptr);
+      CW_USEDEFAULT, 0, width, height, nullptr, nullptr, hInstance, nullptr);
    //ㄴ 창에 접근할 수 있는 Handle을 반환한다. 메모리에 만든다.
    // 잘못입력하면 NULL을 반환한다.
 
-   application.initialize(hWnd);
+   application.initialize(hWnd, width, height);
 
    if (!hWnd)
    {
