@@ -11,7 +11,7 @@ namespace STB
 	public:
 		Application();
 		~Application();
-		void initialize(HWND hwnd, UINT width, UINT height);
+		void initialize(HWND hWnd, UINT width, UINT height);
 		void Run();
 
 
@@ -21,8 +21,16 @@ namespace STB
 
 
 	private:
+		void clearRenderTarget();
+		void copyRenderTarget(HDC source, HDC dest);
+		void adjustWindowRect(HWND hwnd, UINT width, UINT height);
+		void createBuffer(UINT width, UINT height);
+		void initializeEtc();
+
+	private:
 		HWND mhwnd;
 		HDC mhdc;
+
 
 		// 원본그대로의 그림판
 		HDC mBackHdc;
@@ -32,8 +40,10 @@ namespace STB
 		UINT mWidth;
 		UINT mHeight;
 
-	
+		// 플레이어
 		GameObject mPlayer;
+
+		std::vector<GameObject*> mGameObjects;
 
 	};
 

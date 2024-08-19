@@ -9,7 +9,7 @@ namespace STB
 		'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L',
 		'Z', 'X', 'C', 'V', 'B', 'N', 'M',
 		VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN,
-		MK_LBUTTON, MK_RBUTTON,
+		MK_LBUTTON, MK_RBUTTON, VK_SPACE,
 	};
 	void Input::Initialize()
 	{

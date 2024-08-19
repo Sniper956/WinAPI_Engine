@@ -2,7 +2,7 @@
 
 namespace STB
 {
-	GameObjectRed::GameObjectRed() :mX(0.0f), mY(0.0f)
+	GameObjectRed::GameObjectRed() :mX(0.0f), mY(0.0f),mR(20.f)
 	{
 
 	}
@@ -14,22 +14,7 @@ namespace STB
 
 	void GameObjectRed::Update()
 	{
-		if (GetAsyncKeyState('W') & 0x8000)
-		{
-			mY -= 0.01f;
-		}
-		if (GetAsyncKeyState('S') & 0x8000)
-		{
-			mY += 0.01f;
-		}
-		if (GetAsyncKeyState('A') & 0x8000)
-		{
-			mX -= 0.01f;
-		}
-		if (GetAsyncKeyState('D') & 0x8000)
-		{
-			mX += 0.01f;
-		}
+		mY -= 1.f;
 	}
 
 
@@ -43,11 +28,17 @@ namespace STB
 		HBRUSH redBrush = CreateSolidBrush(RGB(255, 0, 0));
 		HBRUSH oldBrsuh = (HBRUSH)SelectObject(hdc, redBrush);
 
-		Ellipse(hdc, 1400 + mX, 700 + mY, 1500 + mX, 800 + mY);
-
-		SelectObject(hdc,oldBrsuh);
+		EllipsMakeCenter(hdc, mX, mY);
+	
 		DeleteObject(redBrush);
 	}
 
+	void GameObjectRed::EllipsMakeCenter(HDC hdc, int x, int y)
+	{
+		Ellipse(hdc, x-mR/ 2, y-mR/ 2 , x + mR/2 , y + mR/2);
+	}
+
+	
+	
 }
 

@@ -5,7 +5,8 @@
 #include "WinAPI_Practce.h"
 
 
-#include "..\\STBEngine_Source\STBApplication.h"
+#include "..\\STBEngine_Source\\STBApplication.h"
+#include "..\\STBEngine_Window\\STBLoadScene.h"
 
 // 코드로 연결시키는 것
 //#pragma comment (lib, "..\\x64\\Debug\\STBEngine_Window.lib")
@@ -167,6 +168,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow); // 윈도우에 호출한다.
    UpdateWindow(hWnd);
+
+   // loadScene
+
 
    return TRUE;
 }

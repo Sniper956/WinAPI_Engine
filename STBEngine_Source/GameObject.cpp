@@ -1,9 +1,12 @@
 #include "GameObject.h"
 #include "STBInput.h"
 #include "STBTime.h"
+
+
+
 namespace STB
 {
-	STB::GameObject::GameObject() : mX(0.0f), mY(0.0f)
+    STB::GameObject::GameObject() : mX(0.0f), mY(0.0f)
 	{
 
 	}
@@ -36,6 +39,15 @@ namespace STB
             mY += speed * Time::DeltaTime();
         }
 
+        if (Input::GetKey(eKeyCode::Space))
+        {
+            GameObjectRed* bullets = new GameObjectRed;
+            bullets->SetEllipsePos(150 + mX, 150 + mY);
+            Bullets.push_back(bullets);
+            
+        }
+
+        BulletsUpdate();
    
 	}
 
@@ -71,7 +83,36 @@ namespace STB
         DeleteObject(brush);
         DeleteObject(redPen);
 
+        BulletsRender(hdc);
+
 	}
+
+    void GameObject::BulletsUpdate()
+    {
+        for (iterBullets = Bullets.begin(); iterBullets != Bullets.end();)
+        {
+            (*iterBullets)->Update();
+
+            if ((*iterBullets)->GetY() < 0)
+            {
+                delete* iterBullets;
+                iterBullets = Bullets.erase(iterBullets);
+            }
+            else
+            {
+                ++iterBullets;
+            }
+        }
+    }
+
+    void GameObject::BulletsRender(HDC hdc)
+    {
+        for (iterBullets = Bullets.begin(); iterBullets != Bullets.end(); ++iterBullets)
+        {
+            (*iterBullets)->Render(hdc);
+        }
+
+    }
 
 	
 	

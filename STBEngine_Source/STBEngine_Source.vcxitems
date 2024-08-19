@@ -18,15 +18,22 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameObjectRed.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)STBApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)STBEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)STBInput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)STBScene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)STBSceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)STBTime.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Application.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Entity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameObjectRed.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Input.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)STBInput.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)STBSceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)STBTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Time.cpp" />
   </ItemGroup>

@@ -1,5 +1,6 @@
 #pragma once
 #include "Commonincllude.h"
+#include "GameObjectRed.h"
 
 namespace STB
 {
@@ -14,11 +15,13 @@ namespace STB
 		void LateUpdate();
 		void Render(HDC hdc);
 	   
-		//void SetPostion(float x, float y)
-		//{
-		//	mX = x;
-		//	mY = y;
-		//}
+		void BulletsUpdate();
+		void BulletsRender(HDC hdc);
+		void SetPostion(float x, float y)
+		{
+			mX = x;
+			mY = y;
+		}
 	   
 		float GetPostionX() { return mX; }
 		
@@ -28,6 +31,9 @@ namespace STB
 		// 게임오브젝트의 좌표
 		float mX;
 		float mY;
+
+		std::vector<GameObjectRed*> Bullets;
+		std::vector<GameObjectRed*>::iterator iterBullets;
 	};
 
 
