@@ -1,5 +1,6 @@
 #include "STBSceneManager.h"
 
+
 namespace STB
 {
 	void SceneManager::Initialize()
@@ -21,5 +22,4 @@ namespace STB
 	{
 		mActiveScene->Render(hdc);
 	}
-
 }

@@ -1,12 +1,13 @@
 #pragma once
-#include "STBScene.h"
+#include "..\\STBEngine_Source\\STBScene.h"
 
 namespace STB
 {
 	class PlayScene : public Scene
 	{
 	public:
-
+		PlayScene();
+		~PlayScene();
 	private:
 	};
 }

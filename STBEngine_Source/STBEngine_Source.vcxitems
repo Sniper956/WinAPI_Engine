@@ -33,7 +33,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)STBInput.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)STBSceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)STBTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Time.cpp" />
   </ItemGroup>

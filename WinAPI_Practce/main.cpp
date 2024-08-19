@@ -170,7 +170,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    UpdateWindow(hWnd);
 
    // loadScene
-
+   
 
    return TRUE;
 }
